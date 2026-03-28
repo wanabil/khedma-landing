@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Khedma — Services à domicile de confiance au Maroc</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --forest: #1A3C34;
+    --forest-dark: #0D1F1A;
+    --forest-light: #2A5C50;
+    --terra: #C8553D;
+    --terra-light: #E06A50;
+    --cream: #FAF6EF;
+    --sand: #EDE0C8;
+    --white: #FFFFFF;
+    --muted: #7A7268;
+    --text: #1A1A18;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--forest-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,85,61,0.18) 0%, transparent 70%);
+    top: -100px; right: -150px;
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(42,92,80,0.3) 0%, transparent 70%);
+    bottom: -80px; left: -80px;
+    pointer-events: none;
+  }
+
+  nav {
+    position: relative; z-index: 10;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 24px 48px;
+  }
+
+  .logo {
+    display: flex; align-items: baseline; gap: 8px;
+  }
+  .logo-main { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 900; color: var(--white); letter-spacing: -0.02em; }
+  .logo-ar { font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; }
+
+  .nav-cta {
+    background: var(--terra); color: var(--white); border: none;
+    padding: 10px 24px; border-radius: 100px;
+    font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600;
+    cursor: pointer; transition: background 0.2s;
+    text-decoration: none; display: inline-block;
+  }
+  .nav-cta:hover { background: var(--terra-light); }
+
+  .hero-content {
+    flex: 1; display: flex; flex-direction: column; justify-content: center;
+    padding: 60px 48px 80px;
+    position: relative; z-index: 2;
+    max-width: 900px;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 6px 16px; border-radius: 100px;
+    font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.7);
+    letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 28px; width: fit-content;
+  }
+
+  .hero-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(48px, 7vw, 86px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--terra);
+  }
+
+  .hero-sub {
+    font-size: 18px; font-weight: 300; color: rgba(255,255,255,0.65);
+    line-height: 1.7; max-width: 540px; margin-bottom: 40px;
+  }
+
+  .hero-form {
+    display: flex; gap: 12px; flex-wrap: wrap;
+    max-width: 540px;
+  }
+
+  .hero-input {
+    flex: 1; min-width: 220px;
+    padding: 14px 20px; border-radius: 12px;
+    background: rgba(255,255,255,0.1);
+    border: 1.5px solid rgba(255,255,255,0.2);
+    color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 14px;
+    outline: none; transition: border-color 0.2s;
+    backdrop-filter: blur(8px);
+  }
+  .hero-input::placeholder { color: rgba(255,255,255,0.4); }
+  .hero-input:focus { border-color: rgba(255,255,255,0.5); }
+
+  .btn-primary {
+    padding: 14px 28px; border-radius: 12px;
+    background: var(--terra); color: var(--white); border: none;
+    font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600;
+    cursor: pointer; transition: all 0.2s; white-space: nowrap;
+    box-shadow: 0 6px 20px rgba(200,85,61,0.4);
+  }
+  .btn-primary:hover { background: var(--terra-light); transform: translateY(-1px); }
+
+  .hero-stats {
+    display: flex; gap: 32px; margin-top: 52px; padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    flex-wrap: wrap;
+  }
+
+  .stat-item { }
+  .stat-num {
+    font-family: 'Fraunces', serif; font-size: 36px; font-weight: 700;
+    color: var(--white); line-height: 1;
+  }
+  .stat-label { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* ── TRUST BAR ── */
+  .trust-bar {
+    background: var(--sand); padding: 18px 48px;
+    display: flex; justify-content: center; gap: 48px; flex-wrap: wrap;
+  }
+  .trust-item {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; font-weight: 500; color: var(--forest);
+  }
+  .trust-icon { font-size: 18px; }
+
+  /* ── SERVICES ── */
+  .section { padding: 80px 48px; }
+  .section-label {
+    font-size: 11px; font-weight: 600; color: var(--terra); letter-spacing: 0.12em;
+    text-transform: uppercase; margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif; font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700; color: var(--text); line-height: 1.1; letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+  .section-sub { font-size: 16px; color: var(--muted); line-height: 1.7; max-width: 520px; margin-bottom: 48px; }
+
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+  }
+
+  .service-card {
+    background: var(--white); border-radius: 20px; padding: 28px 24px;
+    border: 1.5px solid var(--sand); position: relative; overflow: hidden;
+    transition: all 0.2s; cursor: default;
+  }
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(26,60,52,0.12);
+    border-color: var(--forest);
+  }
+
+  .service-icon { font-size: 36px; margin-bottom: 16px; display: block; }
+  .service-name { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+  .service-desc { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+  .service-from { font-size: 13px; font-weight: 600; color: var(--forest); }
+  .service-badge {
+    position: absolute; top: 20px; right: 20px;
+    background: var(--forest); color: var(--white);
+    font-size: 10px; font-weight: 600; padding: 3px 10px; border-radius: 100px;
+    letter-spacing: 0.04em;
+  }
+  .service-badge.terra { background: var(--terra); }
+  .service-badge.purple { background: #6B4A8A; }
+
+  /* ── HOW IT WORKS ── */
+  .how-section {
+    background: var(--forest-dark);
+    padding: 80px 48px;
+  }
+  .how-section .section-title { color: var(--white); }
+  .how-section .section-label { color: rgba(200,85,61,0.9); }
+  .how-section .section-sub { color: rgba(255,255,255,0.55); }
+
+  .steps-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 32px; margin-top: 0;
+  }
+
+  .step {
+    position: relative;
+  }
+
+  .step-num {
+    font-family: 'Fraunces', serif; font-size: 64px; font-weight: 900;
+    color: rgba(255,255,255,0.06); line-height: 1;
+    margin-bottom: -8px;
+  }
+
+  .step-icon {
+    font-size: 28px; margin-bottom: 14px; display: block;
+    background: rgba(255,255,255,0.08); width: 56px; height: 56px;
+    border-radius: 14px; display: flex; align-items: center; justify-content: center;
+  }
+
+  .step-title { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+  .step-desc { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.7; }
+
+  /* ── TRUST ── */
+  .trust-section { padding: 80px 48px; background: var(--white); }
+  .trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; }
+
+  .trust-card {
+    background: var(--cream); border-radius: 18px; padding: 28px 24px;
+    border: 1.5px solid var(--sand);
+  }
+  .trust-card-icon { font-size: 32px; margin-bottom: 16px; }
+  .trust-card-title { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .trust-card-desc { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+  /* ── TESTIMONIAL ── */
+  .testimonial-section { padding: 80px 48px; }
+  .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+
+  .testimonial-card {
+    background: var(--white); border-radius: 18px; padding: 24px;
+    border: 1.5px solid var(--sand); transition: all 0.2s;
+  }
+  .testimonial-card:hover { box-shadow: 0 8px 32px rgba(26,60,52,0.08); }
+
+  .t-stars { color: #E8A838; font-size: 14px; margin-bottom: 12px; }
+  .t-text { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 16px; font-style: italic; }
+  .t-author { display: flex; align-items: center; gap: 10px; }
+  .t-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--sand); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+  .t-name { font-size: 13px; font-weight: 600; color: var(--text); }
+  .t-city { font-size: 11px; color: var(--muted); }
+
+  /* ── CTA SECTION ── */
+  .cta-section {
+    background: linear-gradient(135deg, var(--forest) 0%, var(--forest-dark) 100%);
+    padding: 80px 48px; text-align: center; position: relative; overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(200,85,61,0.2) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .cta-section .section-title { color: var(--white); text-align: center; }
+  .cta-section .section-sub { color: rgba(255,255,255,0.6); text-align: center; margin: 0 auto 40px; }
+  .cta-section .section-label { text-align: center; }
+
+  .cta-form {
+    display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+    max-width: 560px; margin: 0 auto;
+    position: relative; z-index: 2;
+  }
+
+  .tabs {
+    display: flex; gap: 4px; background: rgba(255,255,255,0.1); border-radius: 10px; padding: 4px;
+    margin: 0 auto 24px; width: fit-content; position: relative; z-index: 2;
+  }
+  .tab-btn {
+    padding: 8px 20px; border-radius: 8px; border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+    transition: all 0.2s;
+  }
+  .tab-btn.active { background: var(--white); color: var(--forest); }
+  .tab-btn.inactive { background: transparent; color: rgba(255,255,255,0.6); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--forest-dark); padding: 32px 48px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+  }
+  .footer-logo { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 900; color: var(--white); }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-link { font-size: 12px; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+  .footer-link:hover { color: rgba(255,255,255,0.8); }
+  .footer-copy { font-size: 11px; color: rgba(255,255,255,0.25); }
+
+  /* ── NOTIFICATION ── */
+  .notif {
+    position: fixed; bottom: 24px; right: 24px; z-index: 100;
+    background: var(--forest); color: var(--white); padding: 14px 20px;
+    border-radius: 14px; font-size: 13px; font-weight: 500;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    transform: translateY(100px); opacity: 0;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex; align-items: center; gap: 10px;
+    max-width: 320px;
+  }
+  .notif.show { transform: translateY(0); opacity: 1; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; }
+    .hero-content { padding: 40px 24px 60px; }
+    .hero-stats { gap: 20px; }
+    .section, .trust-section, .testimonial-section, .how-section { padding: 60px 24px; }
+    .trust-bar { padding: 16px 24px; gap: 24px; }
+    .cta-section { padding: 60px 24px; }
+    footer { padding: 24px; flex-direction: column; text-align: center; }
+    .footer-links { justify-content: center; }
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-in { opacity: 0; animation: fadeInUp 0.6s ease forwards; }
+  .fade-in:nth-child(1) { animation-delay: 0.1s; }
+  .fade-in:nth-child(2) { animation-delay: 0.2s; }
+  .fade-in:nth-child(3) { animation-delay: 0.3s; }
+  .fade-in:nth-child(4) { animation-delay: 0.4s; }
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <nav>
+    <div class="logo">
+      <span class="logo-main">Khedma</span>
+      <span class="logo-ar">خدمة</span>
+    </div>
+    <a href="#waitlist" class="nav-cta">Je m'inscris →</a>
+  </nav>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">🇲🇦 Bientôt disponible au Maroc</div>
+    <h1 class="hero-title">
+      Des services<br />à domicile<br /><em>de confiance</em>
+    </h1>
+    <p class="hero-sub">
+      Ménage, plomberie, courses, aide aux séniors — réservez un prestataire vérifié en 2 minutes. Disponible dans toutes les grandes villes du Maroc.
+    </p>
+    <form class="hero-form" onsubmit="handleSubmit(event, 'hero')">
+      <input class="hero-input" type="tel" placeholder="Votre numéro WhatsApp" id="hero-phone" />
+      <button type="submit" class="btn-primary">Rejoindre la liste d'attente</button>
+    </form>
+    <p style="font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 12px;">Aucun spam. Vous serez notifié(e) en avant-première lors du lancement.</p>
+
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num" id="counter-1">0</div>
+        <div class="stat-label">Inscrits sur liste d'attente</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">4</div>
+        <div class="stat-label">Services disponibles</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">6+</div>
+        <div class="stat-label">Villes au lancement</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRUST BAR ── -->
+<div class="trust-bar">
+  <div class="trust-item"><span class="trust-icon">✅</span> Prestataires vérifiés (CIN + casier)</div>
+  <div class="trust-item"><span class="trust-icon">🛡️</span> Paiement à la fin de la prestation</div>
+  <div class="trust-item"><span class="trust-icon">⭐</span> Satisfaction garantie ou remboursé</div>
+  <div class="trust-item"><span class="trust-icon">📍</span> Géolocalisation en temps réel</div>
+</div>
+
+<!-- ── SERVICES ── -->
+<section class="section">
+  <p class="section-label">Nos services</p>
+  <h2 class="section-title">Tout ce dont votre<br />foyer a besoin</h2>
+  <p class="section-sub">Quatre catégories essentielles pour couvrir les besoins quotidiens de toute la famille.</p>
+
+  <div class="services-grid">
+    <div class="service-card fade-in">
+      <span class="service-badge">Populaire</span>
+      <span class="service-icon">🧹</span>
+      <div class="service-name">Ménage & Nettoyage</div>
+      <p class="service-desc">Femmes de ménage expérimentées, disponibles à la journée ou en abonnement régulier.</p>
+      <div class="service-from">À partir de 40 DH/heure</div>
+    </div>
+    <div class="service-card fade-in">
+      <span class="service-badge terra">Urgence 24h</span>
+      <span class="service-icon">🔧</span>
+      <div class="service-name">Plomberie & Électricité</div>
+      <p class="service-desc">Techniciens certifiés disponibles en urgence ou sur rendez-vous, avec devis avant intervention.</p>
+      <div class="service-from">À partir de 150 DH/intervention</div>
+    </div>
+    <div class="service-card fade-in">
+      <span class="service-icon">🛒</span>
+      <div class="service-name">Courses à domicile</div>
+      <p class="service-desc">Souk, pharmacie, supermarché — un coursier de confiance fait vos emplettes et vous les livre.</p>
+      <div class="service-from">À partir de 30 DH/livraison</div>
+    </div>
+    <div class="service-card fade-in">
+      <span class="service-badge purple">Unique au Maroc</span>
+      <span class="service-icon">🤝</span>
+      <div class="service-name">Aide aux Séniors</div>
+      <p class="service-desc">Accompagnement, compagnie et aide quotidienne pour vos proches âgés. Idéal pour la diaspora.</p>
+      <div class="service-from">À partir de 50 DH/heure</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS ── -->
+<section class="how-section">
+  <p class="section-label">Fonctionnement</p>
+  <h2 class="section-title">Réservez en<br />3 étapes simples</h2>
+  <p class="section-sub" style="margin-bottom: 48px;">Pas de temps perdu à chercher sur les groupes WhatsApp ou Avito. Khedma s'occupe de tout.</p>
+
+  <div class="steps-grid">
+    <div class="step fade-in">
+      <div class="step-num">01</div>
+      <div class="step-icon" style="background:rgba(200,85,61,0.15);">📱</div>
+      <div class="step-title">Choisissez votre service</div>
+      <p class="step-desc">Sélectionnez le type de prestation, votre ville, et le créneau qui vous convient.</p>
+    </div>
+    <div class="step fade-in">
+      <div class="step-num">02</div>
+      <div class="step-icon" style="background:rgba(42,92,80,0.2);">🎯</div>
+      <div class="step-title">Choisissez un prestataire</div>
+      <p class="step-desc">Consultez les profils vérifiés, les avis clients, et le tarif avant de confirmer.</p>
+    </div>
+    <div class="step fade-in">
+      <div class="step-num">03</div>
+      <div class="step-icon" style="background:rgba(255,255,255,0.08);">✅</div>
+      <div class="step-title">Suivez en temps réel</div>
+      <p class="step-desc">Géolocalisation du prestataire, chat intégré, et paiement sécurisé à la fin.</p>
+    </div>
+    <div class="step fade-in">
+      <div class="step-num">04</div>
+      <div class="step-icon" style="background:rgba(200,85,61,0.15);">⭐</div>
+      <div class="step-title">Évaluez & fidélisez</div>
+      <p class="step-desc">Laissez un avis, sauvegardez vos favoris, et rebookez en un clic.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRUST ── -->
+<section class="trust-section">
+  <p class="section-label">Notre engagement</p>
+  <h2 class="section-title">La confiance,<br />au cœur de Khedma</h2>
+  <p class="section-sub">Le premier frein des services à domicile au Maroc, c'est la confiance. On a tout pensé pour le résoudre.</p>
+
+  <div class="trust-grid">
+    <div class="trust-card">
+      <div class="trust-card-icon">🪪</div>
+      <div class="trust-card-title">Vérification stricte</div>
+      <p class="trust-card-desc">CIN, casier judiciaire et entretien vidéo pour chaque prestataire avant activation. Badge "Khedma Vérifié" affiché sur chaque profil.</p>
+    </div>
+    <div class="trust-card">
+      <div class="trust-card-icon">🛡️</div>
+      <div class="trust-card-title">Assurance intégrée</div>
+      <p class="trust-card-desc">Toutes les prestations sont couvertes par une assurance partenaire. En cas de casse ou d'incident, vous êtes protégé(e).</p>
+    </div>
+    <div class="trust-card">
+      <div class="trust-card-icon">💰</div>
+      <div class="trust-card-title">Paiement sécurisé</div>
+      <p class="trust-card-desc">Vous payez uniquement après la prestation. Cash, MarocPay, CIH Pay — toutes les options acceptées.</p>
+    </div>
+    <div class="trust-card">
+      <div class="trust-card-icon">🔄</div>
+      <div class="trust-card-title">Satisfaction garantie</div>
+      <p class="trust-card-desc">Si vous n'êtes pas satisfait(e), Khedma vous rembourse ou vous envoie un autre prestataire gratuitement.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ── -->
+<section class="testimonial-section">
+  <p class="section-label">Ils ont testé Khedma</p>
+  <h2 class="section-title" style="margin-bottom: 40px;">La parole à nos<br />premiers utilisateurs</h2>
+
+  <div class="testimonial-grid">
+    <div class="testimonial-card">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-text">"Enfin une app marocaine sérieuse pour trouver une femme de ménage fiable ! Plus besoin de chercher sur les groupes WhatsApp pendant des heures."</p>
+      <div class="t-author">
+        <div class="t-avatar">👩</div>
+        <div>
+          <div class="t-name">Samia E.</div>
+          <div class="t-city">Casablanca, Maarif</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-text">"Mon père est à Rabat, je suis en France. L'aide aux séniors de Khedma me donne une tranquillité d'esprit totale. Quelqu'un de vérifié s'occupe de lui chaque semaine."</p>
+      <div class="t-author">
+        <div class="t-avatar">👨</div>
+        <div>
+          <div class="t-name">Amine B.</div>
+          <div class="t-city">Paris · Parent à Rabat</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-text">"Fuite d'eau un samedi soir — le plombier était là en 45 minutes. Devis envoyé avant, pas de mauvaise surprise. Ça change tout par rapport à ce qu'on connaît."</p>
+      <div class="t-author">
+        <div class="t-avatar">👩‍💼</div>
+        <div>
+          <div class="t-name">Nadia R.</div>
+          <div class="t-city">Marrakech, Guéliz</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WAITLIST CTA ── -->
+<section class="cta-section" id="waitlist">
+  <p class="section-label">Accès anticipé</p>
+  <h2 class="section-title" style="max-width: 600px; margin: 0 auto 16px;">Rejoignez la liste<br />d'attente Khedma</h2>
+  <p class="section-sub">Les 500 premiers inscrits bénéficieront d'un mois de commissions offertes sur toutes leurs réservations.</p>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('client', this)">Je cherche un service</button>
+    <button class="tab-btn inactive" onclick="switchTab('provider', this)">Je suis prestataire</button>
+  </div>
+
+  <form class="cta-form" id="cta-form" onsubmit="handleSubmit(event, 'cta')">
+    <input class="hero-input" type="text" placeholder="Votre prénom" id="cta-name" style="min-width: 160px;" />
+    <input class="hero-input" type="tel" placeholder="Numéro WhatsApp" id="cta-phone" />
+    <input class="hero-input" type="text" placeholder="Votre ville" id="cta-city" style="min-width: 140px;" />
+    <button type="submit" class="btn-primary" id="cta-submit-btn">S'inscrire en priorité →</button>
+  </form>
+
+  <p style="font-size: 12px; color: rgba(255,255,255,0.3); margin-top: 16px; position: relative; z-index: 2;">
+    🔒 Vos données restent confidentielles. Aucune vente à des tiers.
+  </p>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-logo">Khedma <span style="font-family:'DM Sans';font-size:13px;color:rgba(255,255,255,0.3);font-weight:300;">خدمة</span></div>
+  <div class="footer-links">
+    <a href="#" class="footer-link">À propos</a>
+    <a href="#" class="footer-link">Devenir prestataire</a>
+    <a href="#" class="footer-link">Contact</a>
+    <a href="#" class="footer-link">CGU</a>
+  </div>
+  <div class="footer-copy">© 2025 Khedma · Tous droits réservés</div>
+</footer>
+
+<!-- ── NOTIFICATION ── -->
+<div class="notif" id="notif">
+  <span>✅</span>
+  <span id="notif-text">Inscription confirmée ! Vous serez parmi les premiers notifiés.</span>
+</div>
+
+<script>
+  const AIRTABLE_TOKEN = 'patXXp2pReLLs0UzO.b4070f26878e1faeb0904a1e6036e02ea95607f769ac3f4750eb3aab282419e1';
+  const AIRTABLE_BASE  = 'apptJzosuNJlkr72q';
+  const AIRTABLE_TABLE = 'Inscrits';
+
+  let inscritCount = 247;
+  const counterEl = document.getElementById('counter-1');
+  function animateCounter() {
+    let cur = 0;
+    const step = inscritCount / 60;
+    const timer = setInterval(() => {
+      cur = Math.min(cur + step, inscritCount);
+      counterEl.textContent = Math.floor(cur);
+      if (cur >= inscritCount) clearInterval(timer);
+    }, 20);
+  }
+  setTimeout(animateCounter, 600);
+
+  let activeTab = 'client';
+  function switchTab(tab, btn) {
+    activeTab = tab;
+    document.querySelectorAll('.tab-btn').forEach(b => b.className = 'tab-btn inactive');
+    btn.className = 'tab-btn active';
+    document.getElementById('cta-submit-btn').textContent =
+      tab === 'client' ? "S'inscrire en priorité →" : "Devenir prestataire →";
+  }
+
+  async function saveToAirtable(fields) {
+    const res = await fetch(
+      'https://api.airtable.com/v0/' + AIRTABLE_BASE + '/' + encodeURIComponent(AIRTABLE_TABLE),
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer ' + AIRTABLE_TOKEN,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ fields: fields }),
+      }
+    );
+    const data = await res.json();
+    if (!res.ok) throw new Error(JSON.stringify(data));
+    return data;
+  }
+
+  function showNotif(msg) {
+    const notifEl = document.getElementById('notif');
+    document.getElementById('notif-text').textContent = msg;
+    notifEl.classList.add('show');
+    setTimeout(() => notifEl.classList.remove('show'), 4500);
+  }
+
+  async function handleSubmit(e, source) {
+    e.preventDefault();
+    const isProvider = (source === 'cta') && (activeTab === 'provider');
+    const btn = (source === 'hero')
+      ? e.target.querySelector('button[type="submit"]')
+      : document.getElementById('cta-submit-btn');
+    const origLabel = btn.textContent;
+    btn.textContent = 'Envoi en cours...';
+    btn.disabled = true;
+
+    let fields = {};
+    if (source === 'hero') {
+      const phone = document.getElementById('hero-phone').value.trim();
+      if (!phone) { btn.textContent = origLabel; btn.disabled = false; return; }
+      fields = { Telephone: phone, Type: 'Client' };
+    } else {
+      const prenom = document.getElementById('cta-name').value.trim();
+      const phone  = document.getElementById('cta-phone').value.trim();
+      const ville  = document.getElementById('cta-city').value.trim();
+      if (!phone) { btn.textContent = origLabel; btn.disabled = false; return; }
+      fields = {
+        Prenom: prenom,
+        Telephone: phone,
+        Ville: ville,
+        Type: isProvider ? 'Prestataire' : 'Client',
+      };
+    }
+
+    try {
+      await saveToAirtable(fields);
+      inscritCount++;
+      counterEl.textContent = inscritCount;
+      e.target.reset();
+      showNotif(isProvider
+        ? 'Super ! On vous contacte pour le processus de verification.'
+        : 'Inscription confirmee ! Vous serez parmi les premiers notifies.');
+    } catch (err) {
+      console.error('Airtable error:', err.message);
+      showNotif('Erreur: ' + err.message);
+    } finally {
+      btn.textContent = origLabel;
+      btn.disabled = false;
+    }
+  }
+
+  const scrollObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.style.animationPlayState = 'running';
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(item => {
+    item.style.animationPlayState = 'paused';
+    scrollObserver.observe(item);
+  });
+</script>
+</body>
+</html>
