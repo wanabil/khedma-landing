@@ -648,15 +648,15 @@
     if (source === 'hero') {
       const phone = document.getElementById('hero-phone').value.trim();
       if (!phone) { btn.textContent = origLabel; btn.disabled = false; return; }
-      fields = { Telephone: phone, Type: 'Client' };
+      fields = { 'Téléphone': phone, Type: 'Client' };
     } else {
       const prenom = document.getElementById('cta-name').value.trim();
       const phone  = document.getElementById('cta-phone').value.trim();
       const ville  = document.getElementById('cta-city').value.trim();
       if (!phone) { btn.textContent = origLabel; btn.disabled = false; return; }
       fields = {
-        Prenom: prenom,
-        Telephone: phone,
+        'Prénom': prenom,
+        'Téléphone': phone,
         Ville: ville,
         Type: isProvider ? 'Prestataire' : 'Client',
       };
